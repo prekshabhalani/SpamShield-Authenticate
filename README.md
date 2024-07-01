@@ -38,7 +38,8 @@ $ node server.js
 
 ##### Directory Structure
 
-│SpamShield-Authenticate
+SpamShield-Authenticate
+│
 ├── app
 │   └── modules
 │       ├── auth
