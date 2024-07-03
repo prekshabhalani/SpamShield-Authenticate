@@ -14,6 +14,7 @@ module.exports = {
         dialect: 'postgres',
     },
     SERVER: {
-        port: process.env.SERVER_PORT
+        port: process.env.SERVER_PORT,
+        baseApiUrl:'/api'
     }
 };
