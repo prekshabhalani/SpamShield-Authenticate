@@ -38,35 +38,36 @@ $ node server.js
 
 ##### Directory Structure
 
-SpamShield-Authenticate
-│
-├── app
-│   └── modules
-│       ├── auth
+SpamShield-Authenticate/
+├── app/
+│   └── modules/
+│       ├── auth/
+│       │   ├── Controller.js
+│       │   ├── Routes.js
+│       │   ├── projection.json
+│       │   └── validator.js
+│       ├── contacts/
 │       │   ├── Controller.js
 │       │   ├── Routes.js
 │       │   └── Schema.js
 │       │   ├── projection.json
 │       │   └── validator.js
-│       ├── contacts
+│       ├── spam/
 │       │   ├── Controller.js
 │       │   ├── Routes.js
 │       │   └── Schema.js
 │       │   ├── projection.json
 │       │   └── validator.js
-│       ├── search
-│       │   ├── Controller.js
-│       │   ├── Routes.js
-│       │   └── Schema.js
-│       │   ├── projection.json
-│       │   └── validator.js
-│       └── user
+│       └── user/
 │           ├── Controller.js
 │           ├── Routes.js
 │           └── Schema.js
 │           ├── projection.json
 │           └── validator.js
-├── configs
+└── services/
+│       ├── commonServices.js
+│       └── constant.js
+├── configs/
 │   ├── config.js
 │   └── database.js
 ├── node_modules
