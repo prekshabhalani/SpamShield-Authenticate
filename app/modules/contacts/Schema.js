@@ -51,7 +51,7 @@ const ContactDirectory = sequelizeConnection.define('ContactDirectory', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  isRegistered: {
+  isUserDetails: {
     type: DataTypes.BOOLEAN,
     defaultValue: false
   },
