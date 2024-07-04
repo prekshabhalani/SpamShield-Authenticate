@@ -126,7 +126,7 @@ class Common {
     return this.handleReject(
       res,
       HTTP_CODE.FAILED,
-      HTTP_CODE.SUCCESS_CODE,
+      HTTP_CODE.CONFLICT_CODE,
       `${Object.keys(fields)[0].charAt(0).toUpperCase() + Object.keys(fields)[0].slice(1)} already exist.`
     );
   }
