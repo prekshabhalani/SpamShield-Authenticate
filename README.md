@@ -65,6 +65,7 @@ SpamShield-Authenticate/
 │           ├── projection.json
 │           └── validator.js
 └── services/
+│       ├── middleware.js
 │       ├── commonServices.js
 │       └── constant.js
 ├── configs/
