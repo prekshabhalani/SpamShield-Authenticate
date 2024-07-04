@@ -1,7 +1,0 @@
-{
-    "UserExcludedFields": [
-        "password",
-        "createdAt",
-        "updatedAt"
-    ]
-}
