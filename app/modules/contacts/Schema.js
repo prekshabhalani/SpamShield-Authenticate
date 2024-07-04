@@ -45,7 +45,7 @@ const ContactDirectory = sequelizeConnection.define('ContactDirectory', {
   },
   email: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: true
   },
   name: {
     type: DataTypes.STRING,
@@ -57,7 +57,7 @@ const ContactDirectory = sequelizeConnection.define('ContactDirectory', {
   },
   userId: {
     type: DataTypes.UUID,
-    allowNull: true,
+    allowNull: false,
     references: {
       model: User,
       key: 'id'
@@ -65,7 +65,7 @@ const ContactDirectory = sequelizeConnection.define('ContactDirectory', {
   },
   phoneId: {
     type: DataTypes.UUID,
-    allowNull: true,
+    allowNull: false,
     references: {
       model: PhoneNumber,
       key: 'id'
