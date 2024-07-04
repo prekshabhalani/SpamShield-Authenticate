@@ -16,5 +16,9 @@ module.exports = {
     SERVER: {
         port: process.env.SERVER_PORT,
         baseApiUrl:'/api'
+    },
+    JWT: {
+        JWT_SECRET: process.env.JWT_SECRET,
+        JWT_TOKEN_EXPIRE_TIME: process.env.JWT_TOKEN_EXPIRE_TIME
     }
 };

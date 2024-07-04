@@ -1,0 +1,7 @@
+{
+    "UserExcludedFields": [
+        "password",
+        "createdAt",
+        "updatedAt"
+    ]
+}
