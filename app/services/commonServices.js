@@ -88,7 +88,7 @@ class Common {
 
         return resolve(isVerified);
       } catch (error) {
-        console.error('generateToken(id)', error);
+        console.error('verifyPassword(password, savedPassword)', error);
         return reject({ message: "An error occurred while processing.", status: HTTP_CODE.FAILED });
       }
     });
@@ -114,14 +114,14 @@ class Common {
      ********************************************************/
   databaseUniqConstrainViolation(error) { return (error.fields && error.parent && error.parent.code === DATABASE_VALIDATION.UNIQUE_CONSTRAINTS_VIOLATION) ? true : false }
 
- /********************************************************
-   @Purpose Handle Error Response For Database Uniq Constrain Violation
-   @Parameter
-   {
-      res, status, statusCode, message
-   }
-   @Return JSON String
-   ********************************************************/
+  /********************************************************
+    @Purpose Handle Error Response For Database Uniq Constrain Violation
+    @Parameter
+    {
+       res, status, statusCode, message
+    }
+    @Return JSON String
+    ********************************************************/
   handleDatabaseUniqConstrainViolation(res, fields) {
     return this.handleReject(
       res,
@@ -130,7 +130,20 @@ class Common {
       `${Object.keys(fields)[0].charAt(0).toUpperCase() + Object.keys(fields)[0].slice(1)} already exist.`
     );
   }
-  
+
+  /********************************************************
+     @Purpose check token's expiry
+     @Parameter
+     {
+        token: //JWT token
+     }
+     @Return Boolean
+     ********************************************************/
+  checkTokenExpiry(token) {
+    const currentTimeUTC = Math.floor(Date.now() / 1000);    
+    return (currentTimeUTC >= token.exp) ? true : false; 
+  }
+
 }
 
 module.exports = new Common();
