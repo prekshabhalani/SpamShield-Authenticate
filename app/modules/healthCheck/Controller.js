@@ -24,7 +24,7 @@ module.exports = class TestController {
                 res: this.res,
                 status: HTTP_CODE.SUCCESS,
                 statusCode: HTTP_CODE.SUCCESS_CODE,
-                message: 'Welcome to the Spam Shield-Authentication Server :)'
+                message: 'Welcome to the Spam Shield Server :)'
             });
             
         } catch (error) {
