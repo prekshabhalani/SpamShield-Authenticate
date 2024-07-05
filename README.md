@@ -41,22 +41,19 @@ $ node server.js
 SpamShield-Authenticate/
 ├── app/
 │   └── modules/
-│       ├── auth/
+│       ├── search/
 │       │   ├── Controller.js
 │       │   ├── Routes.js
-│       │   ├── projection.json
 │       │   └── validator.js
 │       ├── contacts/
 │       │   ├── Controller.js
 │       │   ├── Routes.js
 │       │   └── Schema.js
-│       │   ├── projection.json
 │       │   └── validator.js
 │       ├── spam/
 │       │   ├── Controller.js
 │       │   ├── Routes.js
 │       │   └── Schema.js
-│       │   ├── projection.json
 │       │   └── validator.js
 │       └── user/
 │           ├── Controller.js
