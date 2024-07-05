@@ -40,3 +40,10 @@ exports.HTTP_CODE = {
 exports.DATABASE_VALIDATION = {
   UNIQUE_CONSTRAINTS_VIOLATION: '23505',
 };
+
+exports.TYPE_OF_PHONE_NUMBER = {
+  USER_NUMBER: 'user',
+  CONTACT_NUMBER: 'contact',
+  RANDOM_NUMBER: 'random'
+};
+
