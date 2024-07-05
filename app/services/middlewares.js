@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { ContactDirectory, PhoneNumber } = require('../modules/contacts/Schema');
 const { HTTP_CODE } = require('./constant');
 const commonServices = require('./commonServices');
+const { User } = require('../modules/users/Schema');
 
 class Middlewares {
 
@@ -20,7 +21,7 @@ class Middlewares {
           );
         }
 
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.decode(token, process.env.JWT_SECRET);
 
         if (!decoded) {
           return commonServices.handleReject(
@@ -31,7 +32,7 @@ class Middlewares {
           );
         }
 
-        if (!commonServices.checkTokenExpiry(decoded)) {
+        if (commonServices.checkTokenExpiry(decoded)) {
           return commonServices.handleReject(
             res,
             HTTP_CODE.FAILED,
@@ -47,6 +48,10 @@ class Middlewares {
             {
               model: PhoneNumber,
               attributes: ['id', 'number']
+            },
+            {
+              model: User,
+              attributes: ['id']
             }
           ],
           attributes: ['id', 'email', 'name'],
@@ -71,8 +76,8 @@ class Middlewares {
 
       } catch (err) {
         console.log(err, "isAuthenticateUser()")
-        return handleReject(
-          this.res,
+        return commonServices.handleReject(
+          res,
           HTTP_CODE.FAILED,
           HTTP_CODE.UNAUTHORIZED_CODE,
           "Please authenticate."
