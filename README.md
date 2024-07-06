@@ -106,9 +106,9 @@ Formate - URL/baseUrl/endpoint
     }
     Response: Status 200 with a token or an error message.
 
-## Mark Number as Spam POST /spam
+## Mark Number as Spam get /spam
     Description: Marks a phone number as spam.
-    Request Body:
+    Request Params:
     {
         "phoneNumber": "1234567890"
     }
