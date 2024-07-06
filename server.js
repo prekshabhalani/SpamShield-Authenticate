@@ -8,7 +8,6 @@ const fs = require('fs-extra');
 const app = express();
 app.use(bodyParser.json());
 
-
 // Database connection
 (async () => {
   try {
@@ -18,7 +17,6 @@ app.use(bodyParser.json());
   }
 })();
 
-
 global.appRoot = path.resolve(__dirname);
 app.use(
   bodyParser.urlencoded({
@@ -27,11 +25,8 @@ app.use(
   })
 );
 
-
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
-
-
 app.use((err, req, res, next) => {
   return res.send({
     status: 0,
@@ -40,8 +35,6 @@ app.use((err, req, res, next) => {
     error: err
   });
 });
-
-
 app.use(express.json());
 
 // Getting all routes
@@ -64,8 +57,6 @@ const routerFilePathPattern = `${__dirname}/app/modules/**/Routes.js`;
     console.error('Error loading routes:', err);
   }
 })();
-
-
 
 const PORT = config.port || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}.`));

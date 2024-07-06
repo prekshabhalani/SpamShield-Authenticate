@@ -8,7 +8,7 @@ const path = require('path');
 
 const postgres = `${config.dialect}://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
 
-sequelizeOptions = {
+const sequelizeOptions = {
   logging: false,
   sync: true,
   dialectOptions: {
@@ -25,15 +25,12 @@ sequelizeOptions = {
   },
 }
 
-//Enable sslConnection
+// Enable sslConnection
 if (config.enableSSL && config.enableSSL == 'false') {
   delete sequelizeOptions.dialectOptions.ssl;
 }
 
-let sequelizeConnection = new Sequelize(postgres, sequelizeOptions);
-
-
-
+const sequelizeConnection = new Sequelize(postgres, sequelizeOptions);
 const databaseConnection = async () => {
   sequelizeConnection
     .authenticate()
@@ -45,30 +42,27 @@ const databaseConnection = async () => {
     });
 
   // getting all model schema and set their relation
-  let db = {};
+  let dbModels = {};
 
   const schemaFilePathPattern = `${__dirname}/../app/modules/**/*Schema.js`;
   const schemaFiles = await glob(schemaFilePathPattern);
 
   for (const schema of schemaFiles) {
     try {
-      const models = require(path.resolve(schema));
-      db = { ...db, ...models };
+      dbModels = { ...dbModels, ...require(path.resolve(schema)) };
     } catch (err) {
       console.error('Error processing schema:', schema, err);
     }
   }
 
-  Object.keys(db).forEach((modelName) => {
-    if (modelName && db[modelName] && db[modelName].associate) {
-      db[modelName].associate(db);
+  Object.keys(dbModels).forEach((modelName) => {
+    if (modelName && dbModels[modelName] && dbModels[modelName].associate) {
+      dbModels[modelName].associate(dbModels);
     }
   });
 
   await sequelizeConnection.sync();
   return sequelizeConnection;
-
 };
-
 
 module.exports = { sequelizeConnection, databaseConnection };

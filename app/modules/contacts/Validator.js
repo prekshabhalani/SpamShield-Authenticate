@@ -1,13 +1,10 @@
-const { body, validationResult, query } = require('express-validator');
+const { validationResult, query } = require('express-validator');
 
 /********************************************************
-       @Method POST 
-       @Route '/personDetails'
-   ********************************************************/
-const personDetailsValidation = [
-  query('id').isUUID().withMessage('Valid id is required')
-];
-
+  @Method POST 
+  @Route '/personDetails'
+********************************************************/
+const personDetailsValidation = [query('id').isUUID().withMessage('Valid id is required')];
 
 /**** express validate fields */
 const validate = (validations) => {

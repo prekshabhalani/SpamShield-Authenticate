@@ -1,9 +1,9 @@
 const { body, validationResult } = require('express-validator');
 
 /********************************************************
-       @Method POST 
-       @Route '/register'
-   ********************************************************/
+  @Method POST 
+  @Route '/register'
+********************************************************/
 const registerValidation = [
   body('name').notEmpty().withMessage('Name is required'),
   body('phoneNumber').isMobilePhone().withMessage('Valid phone number is required'),
@@ -12,15 +12,15 @@ const registerValidation = [
 ];
 
 /********************************************************
-       @Method POST 
-       @Route '/login'
-   ********************************************************/
+  @Method POST 
+  @Route '/login'
+********************************************************/
 const loginValidation = [
   body('phoneNumber').isMobilePhone().withMessage('Valid phone number is required'),
   body('password').notEmpty().withMessage('Password is required'),
 ];
 
-/**** express validate fields */
+/* express validate fields */
 const validate = (validations) => {
   return async (req, res, next) => {
     await Promise.all(validations.map(validation => validation.run(req)));

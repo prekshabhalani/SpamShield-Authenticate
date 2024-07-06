@@ -1,23 +1,24 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelizeConnection } = require('../../../configs/database');
 
 // Define User model
-const User = sequelizeConnection.define('User', {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+const User = sequelizeConnection.define(
+  'User',
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
-  password: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
-}, {
-  tableName: 'users',
-  timestamps: true
-});
+  { tableName: 'users', timestamps: true }
+);
 
-//Association
+// Association
 User.associate = (models) => {
   User.hasMany(models.ContactDirectory, {
     foreignKey: {
@@ -29,6 +30,6 @@ User.associate = (models) => {
     foreignKey: 'markedById',
     allowNull: false
   });
-}
+};
 
 module.exports = { User };

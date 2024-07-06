@@ -1,20 +1,20 @@
 module.exports = (app, express) => {
-    const router = express.Router();
-    const config = require('../../../configs/config').SERVER
-    const Controller = require('./Controller');
-    const { registerValidation, loginValidation, validate } = require('./Validator');
+  const router = express.Router();
+  const config = require('../../../configs/config').SERVER
+  const Controller = require('./Controller');
+  const { registerValidation, loginValidation, validate } = require('./Validator');
 
-    /**** User Register API */
-    router.post('/register', validate(registerValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next).boot(req, res, next)
-        return obj.register();
-    });
+  /**** User Register API */
+  router.post('/register', validate(registerValidation), (req, res, next) => {
+    const obj = new Controller(req, res, next).boot(req, res, next)
+    return obj.register();
+  });
 
-    /**** User Login API */
-    router.post('/login', validate(loginValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next).boot(req, res, next)
-        return obj.login();
-    });
+  /**** User Login API */
+  router.post('/login', validate(loginValidation), (req, res, next) => {
+    const obj = new Controller(req, res, next).boot(req, res, next)
+    return obj.login();
+  });
 
-    app.use(config.baseApiUrl, router);
+  app.use(config.baseApiUrl, router);
 };

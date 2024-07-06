@@ -46,4 +46,3 @@ exports.TYPE_OF_PHONE_NUMBER = {
   CONTACT_NUMBER: 'contact',
   RANDOM_NUMBER: 'random'
 };
-

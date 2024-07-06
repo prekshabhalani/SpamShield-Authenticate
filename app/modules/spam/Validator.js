@@ -1,14 +1,12 @@
 const { body, validationResult } = require('express-validator');
 
 /********************************************************
-       @Method POST 
-       @Route '/spam'
-   ********************************************************/
-const spamNumberValidation = [
-  body('phoneNumber').isMobilePhone().withMessage('Valid phone number is required'),
-];
+  @Method POST 
+  @Route '/spam'
+********************************************************/
+const spamNumberValidation = [body('phoneNumber').isMobilePhone().withMessage('Valid phone number is required')];
 
-/**** express validate fields */
+/* express validate fields */
 const validate = (validations) => {
   return async (req, res, next) => {
     await Promise.all(validations.map(validation => validation.run(req)));

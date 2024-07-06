@@ -1,20 +1,18 @@
-const { body, validationResult, query } = require('express-validator');
+const { validationResult, query } = require('express-validator');
 
 /********************************************************
-       @Method POST 
-       @Route '/search_by_name'
-   ********************************************************/
+  @Method POST 
+  @Route '/search_by_name'
+********************************************************/
 const searchNumberValidation = [
   query('phoneNumber').matches(/^\+?\d+$/).withMessage('Valid number is required'),
 ];
 
 /********************************************************
-       @Method POST 
-       @Route '/search_by_phone_number'
-   ********************************************************/
-const searchNameValidation = [
-  query('searchQuery').isString().withMessage('Valid name is required'),
-];
+  @Method POST 
+  @Route '/search_by_phone_number'
+********************************************************/
+const searchNameValidation = [query('searchQuery').isString().withMessage('Valid name is required')];
 
 /**** express validate fields */
 const validate = (validations) => {
