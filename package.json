@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/prekshabhalani/SpamShield-Authenticate#readme",
   "dependencies": {
-    "@faker-js/faker": "^8.4.1",
+    "@faker-js/faker": "8.4.1",
     "bcrypt": "5.1.1",
     "custom-env": "2.0.2",
     "dotenv": "16.4.5",
