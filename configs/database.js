@@ -6,7 +6,7 @@ const { Sequelize } = require('sequelize');
 const { glob } = require('glob');
 const path = require('path');
 
-const postgres = `${config.dialect}://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
+const postgres = (config.dbURL) ?? `${config.dialect}://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
 const sequelizeConnection = new Sequelize(postgres, {
   logging: false,
   sync: true,

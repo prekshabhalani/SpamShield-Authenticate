@@ -11,7 +11,8 @@ module.exports = {
         database: process.env.DB_NAME,
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
-        dialect: 'postgres',
+        dialect: 'postgresql',
+        dbURL: process.env.DB_URL
     },
     SERVER: {
         port: process.env.SERVER_PORT,
