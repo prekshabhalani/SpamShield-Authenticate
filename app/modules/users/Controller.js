@@ -1,16 +1,15 @@
 const commonServices = require('../../services/commonServices');
 const { handleReject, handleResolve } = require('../../services/commonServices');
 const { HTTP_CODE } = require('../../services/constant');
+const Controller = require('../Base/Controller');
 const { PhoneNumber, ContactDirectory } = require('../contacts/Schema');
 const { User } = require("../users/Schema");
 const { sequelizeConnection } = require('../../../configs/database');
 
-module.exports = class UserController {
-    constructor(req, res, next) {
-        this.req = req;
-        this.res = res;
-        this.next = next;
-    }
+module.exports = class UserController  extends Controller {
+    constructor() {
+    super();
+  }
 
     /********************************************************
        @Purpose Register User 

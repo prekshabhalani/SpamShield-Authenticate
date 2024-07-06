@@ -6,13 +6,13 @@ module.exports = (app, express) => {
 
     /**** User Register API */
     router.post('/register', validate(registerValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res, next)
         return obj.register();
     });
 
     /**** User Login API */
     router.post('/login', validate(loginValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res, next)
         return obj.login();
     });
 

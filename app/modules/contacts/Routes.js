@@ -7,8 +7,8 @@ module.exports = (app, express) => {
     const config = require('../../../configs/config').SERVER
 
     /**** Contact's info based on search result */
-    router.get('/personDetails',Middlewares.isAuthenticateUser(), validate(personDetailsValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+    router.get('/personDetails', Middlewares.isAuthenticateUser(), validate(personDetailsValidation), (req, res, next) => {
+        const obj = new Controller(req, res, next).boot(req, res, next)
         return obj.getPersonDetails();
     });
 

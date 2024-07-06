@@ -5,7 +5,7 @@ module.exports = (app, express) => {
 
     /**** Test API Status */
     router.get('/', (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res, next)
         return obj.welcome();
     });
 

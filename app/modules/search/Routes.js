@@ -8,13 +8,13 @@ module.exports = (app, express) => {
 
     /**** Spam Number API */
     router.get('/search_by_name', Middlewares.isAuthenticateUser(), validate(searchNameValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res,next)
         return obj.searchByName();
     });
 
     /**** Spam Number API */
     router.get('/search_by_phone_number', Middlewares.isAuthenticateUser(), validate(searchNumberValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res,next)
         return obj.searchByPhoneNumber();
     });
 

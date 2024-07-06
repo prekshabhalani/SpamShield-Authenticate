@@ -7,7 +7,7 @@ module.exports = (app, express) => {
 
     /**** Spam Number API */
     router.post('/spam', Middlewares.isAuthenticateUser(), validate(spamNumberValidation), (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res,next)
         return obj.spamPhoneNumber();
     });
 

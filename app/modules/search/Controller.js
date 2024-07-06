@@ -1,16 +1,15 @@
 const commonServices = require('../../services/commonServices');
 const { handleReject, handleResolve } = require('../../services/commonServices');
 const { HTTP_CODE } = require('../../services/constant');
+const Controller = require('../Base/Controller');
 const { ContactDirectory, PhoneNumber } = require('../contacts/Schema');
 const { SpamList } = require('../spam/Schema');
 const { Op } = require('sequelize');
 const { User } = require('../users/Schema');
 
-module.exports = class SearchController {
-    constructor(req, res, next) {
-        this.req = req;
-        this.res = res;
-        this.next = next;
+module.exports = class SearchController extends Controller {
+    constructor() {
+        super();
     }
 
     /********************************************************
@@ -128,48 +127,49 @@ module.exports = class SearchController {
             const spamCount = phoneDetail.SpamLists.length;
             const spamLikelihood = spamCount > 0 ? spamCount / (spamCount + 1) : 0;
 
-            if(phoneDetail.ContactDirectories.length){// Check if there is a registered user with that phone number
-            const registeredContact = phoneDetail.ContactDirectories.find(contact => contact.isUserDetails);
+            if (phoneDetail.ContactDirectories.length) {// Check if there is a registered user with that phone number
+                const registeredContact = phoneDetail.ContactDirectories.find(contact => contact.isUserDetails);
 
-            if (registeredContact) {
-                const result = {
-                    id: registeredContact.id,
-                    name: registeredContact.name,
-                    isUserDetails: true,
-                    userId: registeredContact.userId,
-                    phoneId: registeredContact.phoneId,
-                    phoneNumber,
-                    spamCount: spamCount,
-                    spamLikelihood
-                };
+                if (registeredContact) {
+                    const result = {
+                        id: registeredContact.id,
+                        name: registeredContact.name,
+                        isUserDetails: true,
+                        userId: registeredContact.userId,
+                        phoneId: registeredContact.phoneId,
+                        phoneNumber,
+                        spamCount: spamCount,
+                        spamLikelihood
+                    };
 
-                return handleResolve({
-                    res: this.res,
-                    status: HTTP_CODE.SUCCESS_CODE,
-                    statusCode: HTTP_CODE.SUCCESS_CODE,
-                    data: result,
-                    message: 'Registered user found.'
-                });
-            } else {
-                // Return all contact names for that phone number
-                const results = phoneDetail.ContactDirectories.map(contact => ({
-                    id: contact.id,
-                    name: contact.name,
-                    isUserDetails: false,
-                    userId: contact.userId,
-                    phoneNumber,
-                    spamCount: spamCount,
-                    spamLikelihood
-                }));
+                    return handleResolve({
+                        res: this.res,
+                        status: HTTP_CODE.SUCCESS_CODE,
+                        statusCode: HTTP_CODE.SUCCESS_CODE,
+                        data: result,
+                        message: 'Registered user found.'
+                    });
+                } else {
+                    // Return all contact names for that phone number
+                    const results = phoneDetail.ContactDirectories.map(contact => ({
+                        id: contact.id,
+                        name: contact.name,
+                        isUserDetails: false,
+                        userId: contact.userId,
+                        phoneNumber,
+                        spamCount: spamCount,
+                        spamLikelihood
+                    }));
 
-                return handleResolve({
-                    res: this.res,
-                    status: HTTP_CODE.SUCCESS_CODE,
-                    statusCode: HTTP_CODE.SUCCESS_CODE,
-                    data: results,
-                    message: 'Contacts found.'
-                });
-            }}
+                    return handleResolve({
+                        res: this.res,
+                        status: HTTP_CODE.SUCCESS_CODE,
+                        statusCode: HTTP_CODE.SUCCESS_CODE,
+                        data: results,
+                        message: 'Contacts found.'
+                    });
+                }
+            }
 
             return handleResolve({
                 res: this.res,

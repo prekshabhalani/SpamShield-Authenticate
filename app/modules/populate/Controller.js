@@ -7,12 +7,12 @@ const { User } = require('../users/Schema');
 const { SpamList } = require('../spam/Schema');
 const { sequelizeConnection } = require('../../../configs/database');
 const { param } = require('express-validator');
-module.exports = class SeedController {
-    constructor(req, res, next) {
-        this.req = req;
-        this.res = res;
-        this.next = next;
-    }
+const Controller = require('../Base/Controller');
+
+module.exports = class SeedController  extends Controller {
+    constructor() {
+    super();
+  }
 
     async generateSeedData() {
         try {

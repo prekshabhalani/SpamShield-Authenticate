@@ -6,7 +6,7 @@ module.exports = (app, express) => {
 
     /**** Get random data entry  */
     router.get('/seed_data', (req, res, next) => {
-        const obj = new Controller(req, res, next)
+        const obj = new Controller(req, res, next).boot(req, res,next)
         return obj.generateSeedData();
     });
 

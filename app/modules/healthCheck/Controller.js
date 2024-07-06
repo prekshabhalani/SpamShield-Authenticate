@@ -2,12 +2,11 @@
 
 const { handleReject, handleResolve } = require('../../services/commonServices');
 const { HTTP_CODE } = require('../../services/constant');
+const Controller = require('../Base/Controller');
 
-module.exports = class TestController {
-    constructor(req, res, next) {
-        this.req = req;
-        this.res = res;
-        this.next = next;
+module.exports = class TestController extends Controller {
+    constructor() {
+        super();
     }
 
     /********************************************************
@@ -18,18 +17,18 @@ module.exports = class TestController {
 
     async welcome() {
         try {
-            
-            /**** Manage Resolve Response */   
+
+            /**** Manage Resolve Response */
             return handleResolve({
                 res: this.res,
                 status: HTTP_CODE.SUCCESS,
                 statusCode: HTTP_CODE.SUCCESS_CODE,
                 message: 'Welcome to the Spam Shield Server :)'
             });
-            
+
         } catch (error) {
-            
-            /**** Manage Error logs and Response */   
+
+            /**** Manage Error logs and Response */
             return handleReject(
                 this.res,
                 HTTP_CODE.FAILED,

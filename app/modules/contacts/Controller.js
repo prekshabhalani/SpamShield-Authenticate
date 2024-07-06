@@ -2,15 +2,14 @@
 
 const { handleReject, handleResolve } = require('../../services/commonServices');
 const { HTTP_CODE } = require('../../services/constant');
+const Controller = require('../Base/Controller');
 const { SpamList } = require('../spam/Schema');
 const { User } = require('../users/Schema');
 const { PhoneNumber, ContactDirectory } = require('./Schema');
 
-module.exports = class ContactController {
-    constructor(req, res, next) {
-        this.req = req;
-        this.res = res;
-        this.next = next;
+module.exports = class ContactController extends Controller {
+    constructor() {
+        super();
     }
     /********************************************************
            @Purpose Get Person Details by Phone Number 
@@ -80,7 +79,7 @@ module.exports = class ContactController {
                 isUserDetails: contactDetail.isUserDetails,
                 userId: contactDetail.userId,
                 phoneId: contactDetail.phoneId,
-                phoneNumber:contactDetail.PhoneNumber.number,
+                phoneNumber: contactDetail.PhoneNumber.number,
                 spamCount: spamCount
             };
 
