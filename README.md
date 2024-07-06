@@ -34,6 +34,8 @@ $ npm install
 
 # 6. Start the application
 $ node server.js
+
+# 7. Seed Random Data (GET - https://spamshield-authenticate.onrender.com/api/seed_data)
 ```
 
 ##### Directory Structure
@@ -73,3 +75,71 @@ SpamShield-Authenticate/
 ├── server.js
 ├── .gitignore
 └── README.md
+
+
+#### APIs 
+URL - https://spamshield-authenticate.onrender.com 
+BaseUrl - /api
+Formate - URL/baseUrl/endpoint
+
+## Home  GET /
+    Description: Health check endpoint to ensure the server is running.
+    Response: Status 200 with a message.
+
+## User Registration POST /register
+    Description: Registers a new user.
+    Request Body:
+    {
+        name: John Doe,
+        email: john@example.com, //Optional
+        phoneNumber: 1234567,
+        password: yourpassword
+    }
+    Response: Status 201 with user details or an error message.
+
+## User Login POST /login
+    Description: Authenticates a user.
+    Request Body:
+    {
+        phoneNumber: 1234567,
+        password: yourpassword
+    }
+    Response: Status 200 with a token or an error message.
+
+## Mark Number as Spam POST /spam
+    Description: Marks a phone number as spam.
+    Request Body:
+    {
+        "phoneNumber": "1234567890"
+    }
+    Response: Status 200 with a success message or an error message.
+
+## Search by Phone Number GET /search_by_phone_number
+    Description: Searches for a user details/contact details/random spam number details by their phone number.
+    Request Params:
+    {
+        "phoneNumber": "1234567890"
+    }
+    Response: Status 200 with user details or an error message.
+
+## Search by Name GET /search_by_name
+    Description: Searches for a user details/contact details/random spam number details by their name.
+    Request Params:
+    {
+       name: Preksha
+    }
+    Response: Status 200 with user details or an error message.
+
+## Get Person Details GET /personDetails
+    Description: Retrieves all details for a person based on searched result's clicked data. 
+    Request Params:
+    {
+        "name": "preksha",
+        "email": "preksha@gmail.com",
+        "phoneNumber": "1234567890",
+        "spamCount":5
+        etc....
+    }
+    Response: Status 200 with person details, including spam likelihood, or an error message.
+
+
