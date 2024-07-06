@@ -6,11 +6,26 @@ const { Sequelize } = require('sequelize');
 const { glob } = require('glob');
 const path = require('path');
 
-const postgres = (config.dbURL) ?? `${config.dialect}://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
-const sequelizeConnection = new Sequelize(postgres, {
+const postgres = `${config.dialect}://${config.username}:${config.password}@${config.host}:${config.port}/${config.database}`
+
+sequelizeOptions = {
   logging: false,
   sync: true,
-});
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+}
+
+//Enable sslConnection
+if (config.enableSSL && config.enableSSL == 'false') {
+  delete sequelizeOptions.dialectOptions.ssl;
+}
+
+let sequelizeConnection = new Sequelize(postgres, sequelizeOptions);
+
 
 
 const databaseConnection = async () => {
