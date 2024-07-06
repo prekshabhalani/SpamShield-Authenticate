@@ -6,13 +6,13 @@ module.exports = (app, express) => {
   const Controller = require('../search/Controller');
   const Middlewares = require('../../services/middlewares')
 
-  /**** Spam Number API */
+  /**** Search person's by name from global record */
   router.get('/search_by_name', Middlewares.isAuthenticateUser(), validate(searchNameValidation), (req, res, next) => {
     const obj = new Controller(req, res, next).boot(req, res, next)
     return obj.searchByName();
   });
 
-  /**** Spam Number API */
+  /**** Search person's by phone number from global record */
   router.get('/search_by_phone_number', Middlewares.isAuthenticateUser(), validate(searchNumberValidation), (req, res, next) => {
     const obj = new Controller(req, res, next).boot(req, res, next)
     return obj.searchByPhoneNumber();

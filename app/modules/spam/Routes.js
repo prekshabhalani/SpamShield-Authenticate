@@ -6,7 +6,7 @@ module.exports = (app, express) => {
   const Middlewares = require('../../services/middlewares')
 
   /**** Spam Number API */
-  router.post('/spam', Middlewares.isAuthenticateUser(), validate(spamNumberValidation), (req, res, next) => {
+  router.get('/spam', Middlewares.isAuthenticateUser(), validate(spamNumberValidation), (req, res, next) => {
     const obj = new Controller(req, res, next).boot(req, res, next)
     return obj.spamPhoneNumber();
   });

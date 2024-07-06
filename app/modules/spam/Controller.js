@@ -18,7 +18,7 @@ module.exports = class SpamController extends Controller {
   ********************************************************/
   async spamPhoneNumber() {
     try {
-      const { phoneNumber } = this.req.body;
+      const { phoneNumber } = this.req.query;
 
       // Set current user
       const currentUser = this.req.currentUser;
