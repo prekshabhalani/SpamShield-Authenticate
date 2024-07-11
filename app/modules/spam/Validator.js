@@ -1,10 +1,10 @@
-const { body, validationResult, param } = require('express-validator');
+const { body, validationResult, query } = require('express-validator');
 
 /********************************************************
   @Method POST 
   @Route '/spam'
 ********************************************************/
-const spamNumberValidation = [param('phoneNumber').isMobilePhone().withMessage('Valid phone number is required')];
+const spamNumberValidation = [query('phoneNumber').isMobilePhone().withMessage('Valid phone number is required')];
 
 /* express validate fields */
 const validate = (validations) => {
